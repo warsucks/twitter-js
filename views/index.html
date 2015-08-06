@@ -10,23 +10,26 @@
 <!-- {% endif %} -->
     <h1>Welcome to Twitter.js, Nimit!</h1>
   </div>
-  <div class="row">
+  <div class="row" align = 'center'>
     <div class="col-md-3">
-      <form action="/submit" method="POST">
-        <label for="name_field">Name:</label>
-        <input name="name" type="text" id="name_field" value={{name}}/>
-
-        <label for="text_field">Text:</label>
-        <input name="text" type="text" id="text_field" style="width: 350px;" />
-
-        <input type="submit" value="Submit" />
-      </form>
       <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
       <b>Your Name</b><br>
       100 followers
     </div>
-    <div class="col-md-9">
-      <h2>{{title}}</h2>
+    <div class="col-md-3">
+      <form action="/submit" method="POST">
+        <label for="name_field">Name:</label>
+        <input name="name" type="text" id="name_field" value={{name}}></input>
+        <br>
+        <label for="text_field">Text:</label>
+        <textarea name="text" type="textarea" id="text_field"/></textarea>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
+  <div class = 'row'>
+    <div class="col-md-9" align = 'left'>
+      <h2 align = 'center'>{{title}}</h2>
       <!-- display tweets here -->
     <ul id='tweetList'>
       {% for tweet in tweets %}

@@ -12,9 +12,7 @@ module.exports = function(io)
       var name = request.body.name;
       var text = request.body.text;
       var newTweet = tweetBank.add(name, text);
-      //io.sockets.emit('new_tweet', newTweet);
-      //document.getElementById('tweetList').appendChild('<li>'+newTweet.text+'</li>')
-      response.redirect('/');
+      io.sockets.emit('new_tweet', newTweet);
   });
 
   router.use('/', function(request, response, next)
@@ -27,13 +25,13 @@ module.exports = function(io)
 
   router.get('/users/:name', function(request, response)
   {
-    var tweets = tweetBank.find({name: request.params.name});
-    response.render('index', {name: request.params.name, title: "Tweets by "+request.params.name, tweets: tweets});
+    var name = request.params.name;
+    var tweets = tweetBank.find({name: name});
+    response.render('index', {name: name, title: "Tweets by "+name, tweets: tweets});
   });
 
   router.get('/users/:name/tweets/:id', function(request, response)
   {
-    console.log(request.params.id);
     var tweets = tweetBank.find({id: parseInt(request.params.id)});
     response.render('index', {title: "Tweet by "+request.params.name, tweets: tweets});
   });
@@ -48,7 +46,7 @@ module.exports = function(io)
   });
 
   return router;
-}
+};
 
 
 // router.use('/', function(error, request, response, next)

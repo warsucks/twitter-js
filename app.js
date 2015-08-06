@@ -14,11 +14,10 @@ app.set('view engine', 'html');
 app.set('views', __dirname+'/views');
 
 app.use(express.static(__dirname+"/public"));
-app.use('/',routes(io));
-
 var server = app.listen(3000, function()
 {
   console.log("Listening at 3000");
 });
 
 var io = socketio.listen(server);
+app.use('/',routes(io));
